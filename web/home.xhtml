@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>Welcome</title>
+        <meta http-equiv="pragma" content="no-cache" />   
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"></link>        
+        <link href="styles.css" rel="stylesheet"></link>
+        <link href="bootstrap-3.3.6-dist/css/lavish-bootstrap (5).css" rel="stylesheet" type="text/css"/>
+        <a href="bootstrap-3.3.6-dist/css/variables (5).scss"></a>
+    </h:head>
+    <h:body>
+        
+    #{login.theUserAccount.resetUserData()}
+    #{login.theUserAccount.displayAllJobs()}
+            
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class='container'>           
+            <a class='navbar-text'><b>Welcome to the UHCL Employment Opportunities Web Site</b></a>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href ="contactUs.xhtml" class="active"><b>Contact Us</b></a></li>
+                <li><a href ="aboutUs.xhtml" class="active"><b>About Us</b></a></li>                               
+            </ul>            
+        </div>           
+        </div>
+    </div> 
+        
+    <div class="container">		
+    <h2>Welcome, #{login.theUserAccount.name}</h2>
+        <div class='jumbotron well-lg'>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form styleClass="form-horizontal">
+                    <div class="form-group">
+                        <c:if test="#{login.theUserAccount.allJobDetails.size() gt 0 }">
+                            <h:dataTable id="alljobs" value="#{login.theUserAccount.allJobDetails}"
+                                     var="jobList" border="1" class="table table-hover" style=" background-color:#E9E1E7;">
+                            <h:column>
+                                <f:facet name="header">Job ID</f:facet>
+                                <h:outputText value="#{jobList.jobid}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Job Title</f:facet>
+                                <h:outputText value="#{jobList.jobTitle}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">No Of Openings</f:facet>
+                                <h:outputText value="#{jobList.noOfOpen}"/>
+                            </h:column>   
+
+                            <h:column>
+                                <h:commandLink value="view/apply" 
+                                               style="font-weight: bold;"
+                                               action="#{login.theUserAccount.setSelectedJobData(jobList.jobid,jobList.jobTitle,jobList.jobDescription,jobList.noOfOpen)}" />
+                            </h:column>
+
+                        </h:dataTable>
+                        </c:if>                        
+                    </div>                          
+                    <div class="form-group">                                                                    
+                        <h:link style="font-weight: bold;" outcome="status1.xhtml">Click here to check status of your application</h:link>
+                    </div>
+                    <div class="form-group">                                                                    
+                        <h:commandButton id="SignOut" value="Sign Out"
+                         action="#{login.theUserAccount.signOut()}"
+                         styleClass="btn btn-primary"/>
+                    </div>                        
+                    </h:form>
+                </div>
+            </div>   
+            </div>
+    </div>     
+     
+    <div class='container'>
+        <div class='navbar navbar-inverse navbar-fixed-bottom'>
+        <p class='navbar-text'><b>© 2015 This Project is Developed by JAVA TEAM 3 - All Rights Reserved</b></p>
+    </div>
+    </div>                   
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.js"></script>  
+    
+    </h:body>
+</html>
+

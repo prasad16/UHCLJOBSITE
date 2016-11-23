@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Apply Job</title>
+        <meta http-equiv="pragma" content="no-cache" />   
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"></link>        
+        <link href="styles.css" rel="stylesheet"></link>     
+        <link href="bootstrap-3.3.6-dist/css/lavish-bootstrap (5).css" rel="stylesheet" type="text/css"/>
+        <a href="bootstrap-3.3.6-dist/css/variables (5).scss"></a>
+    </h:head>
+    <h:body>
+      
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class='container'>           
+            <a class='navbar-text'><b>Welcome to the UHCL Employment Opportunities Web Site</b></a>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href ="contactUs.xhtml" class="active"><b>Contact Us</b></a></li>
+                <li><a href ="aboutUs.xhtml" class="active"><b>About Us</b></a></li>                               
+            </ul>            
+        </div>           
+        </div>
+    </div>         
+        
+    <div class="container">		   
+        <div class='jumbotron well-lg'>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form styleClass="form-horizontal">
+                    <div class="form-group">
+                        <h:outputLabel value="Job ID" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theUserAccount.selectedJobID}" styleClass="control-label"/>  
+                        </div>
+                    </div>   
+                    <div class="form-group">
+                        <h:outputLabel value="Job Title" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theUserAccount.selectedJobTitle}" styleClass="control-label"/>  
+                        </div>
+                    </div>                                      
+                    <div class="form-group">
+                        <h:outputLabel value="Job Description" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theUserAccount.selectedJobDescription}" styleClass="control-label"/>  
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <h:outputLabel value="No. of Openings" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theUserAccount.selectedJobNoOfOpenings}" styleClass="control-label"/>  
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <h:outputLabel value="Name" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:inputText id="name" required="true" autocomplete="off"
+                                 requiredMessage="Name can not be empty"
+                                 value="#{login.theUserAccount.userName}"
+                                 styleClass="form-control"/>   
+                              <h:message for="name" style="color: red;"/>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <h:outputLabel value="Age" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputText id="age" required="true" autocomplete="off"
+                                 requiredMessage="Age can not be empty"
+                                 value="#{login.theUserAccount.userAge}"
+                                 validatorMessage="Invalid Age" styleClass="form-control">   
+                                <f:validateRegex pattern="^[1-9][0-9]?$|^100$"/>
+                            </h:inputText> 
+                            <h:message for="age" style="color: red;"/>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <h:outputLabel value="Gender" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:selectOneRadio id="gender" value="#{login.theUserAccount.userGender}" required="true"
+                                      requiredMessage="Gender can not be empty">
+                                <f:selectItem itemValue="Male" itemLabel="Male" />
+                                <f:selectItem itemValue="Female" itemLabel="Female" />
+                            </h:selectOneRadio> 
+                            <h:message for="gender" style="color: red;"/>
+                        </div>
+                    </div>   
+                    <div class="form-group">
+                        <h:outputLabel value="Email ID" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputText id="emailid" required="true" autocomplete="off"
+                                 requiredMessage="Email ID can not be empty"
+                                 value="#{login.theUserAccount.userEmailId}"
+                                 styleClass="form-control" /> 
+                            <h:message for="emailid" style="color: red;"/>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <h:outputLabel value="Contact Number" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputText id="contactnumber" required="true" autocomplete="off"
+                                 requiredMessage="Contact Number can not be empty"
+                                 value="#{login.theUserAccount.userContactNumber}"
+                                 styleClass="form-control"/> 
+                            <h:message for="contactnumber" style="color: red;"/>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <h:outputLabel value="Education" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputText id="education" required="true" autocomplete="off"
+                                 requiredMessage="Education field can not be empty"
+                                 value="#{login.theUserAccount.userEducation}"
+                                 styleClass="form-control"/> 
+                            <h:message for="education" style="color: red;"/>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <h:outputLabel value="Work Experience" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                            <h:inputTextarea id="workexp" required="true"
+                                 requiredMessage="Work Experience field can not be empty"
+                                 value="#{login.theUserAccount.userWorkExp}"
+                                 style="height: 150px; width: 400px;" styleClass="form-control"
+                                 validatorMessage="Too many characters. Maximun is 500">                           
+                                <f:validateLength maximum="500"/>                                
+                            </h:inputTextarea>
+                            <h:message for="workexp" style="color: red;"/>
+                        </div>
+                    </div> 
+                    <div class="form-group">                                                                                                                                
+                            <h:link outcome="home.xhtml" styleClass="col-sm-2">Cancel</h:link>
+                        <div class="col-sm-10">
+                            <h:commandButton id="submit" value="Submit"
+                                     action="confirmation2.xhtml"
+                                     styleClass="btn btn-primary"/>                                                                   
+                        </div>                        
+                    </div>                         
+                    </h:form>
+                </div>
+            </div>   
+            </div>
+    </div>          
+     
+    <div class='container'>
+        <div class='navbar navbar-inverse navbar-fixed-bottom'>
+        <p class='navbar-text'><b>© 2015 This Project is Developed by JAVA TEAM 3 - All Rights Reserved</b></p>
+    </div>
+    </div>                   
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.js"></script>  
+    
+    </h:body>
+</html>
+

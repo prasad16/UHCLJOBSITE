@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:head>
+        <title>View Applicants</title>
+        <meta http-equiv="pragma" content="no-cache" />   
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"></link>  
+        <a href="bootstrap-3.3.6-dist/css/variables (5).scss"></a>
+        <link href="styles.css" rel="stylesheet"></link>         
+        <link href="bootstrap-3.3.6-dist/css/lavish-bootstrap (5).css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+                   
+    #{login.theHrUserAccount.getJobApplicants(login.theHrUserAccount.selectedJobID)}
+       
+    <div class="navbar navbar-static-top navbar-inverse">
+        <div class='container'>           
+            <a class='navbar-text'><b>Welcome to the UHCL Employment Opportunities Web Site</b></a>
+
+            <div class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href ="contactUs.xhtml" class="active"><b>Contact Us</b></a></li>
+                <li><a href ="aboutUs.xhtml" class="active"><b>About Us</b></a></li>                               
+            </ul>            
+        </div>           
+        </div>
+    </div> 
+        
+    <div class="container">		   
+        <div class='jumbotron well-lg'>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form styleClass="form-horizontal">
+                    <div class="form-group">
+                        <h:outputLabel value="Job ID" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theHrUserAccount.selectedJobID}" styleClass="control-label"/>  
+                        </div>
+                    </div>   
+                    <div class="form-group">
+                        <h:outputLabel value="Job Title" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theHrUserAccount.selectedJobTitle}" styleClass="control-label"/>  
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <h:outputLabel value="Job Description" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theHrUserAccount.selectedJobDescription}" styleClass="control-label"/>  
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <h:outputLabel value="No. of Openings" styleClass="control-label col-sm-2"/>
+                        <div class="col-sm-10">
+                              <h:outputLabel value="#{login.theHrUserAccount.selectedJobNoOfOpenings}" styleClass="control-label"/>  
+                        </div>
+                    </div> 
+                    <div class="form-group">                                                                                                                                
+                        <c:if test="#{login.theHrUserAccount.jobApplicantDetails.size() gt 0 }">
+                            <h3>Job Applicants</h3>
+                            <h:dataTable id="jobapplicants" value="#{login.theHrUserAccount.jobApplicantDetails}"
+                                     var="jobApplicantList" border="1" class="table table-hover" style=" background-color:#E9E1E7;">
+                            <h:column>
+                                <f:facet name="header">Application ID</f:facet>
+                                <h:outputText value="#{jobApplicantList.applicationID}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Applicant Name</f:facet>
+                                <h:outputText value="#{jobApplicantList.applicantName}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Status</f:facet>
+                                <h:outputText value="#{jobApplicantList.statusHR}"/>
+                            </h:column>                                 
+
+                            <h:column>
+                                <h:commandLink value="view application" 
+                                               style="font-weight: bold;"
+                                               action="#{login.theHrUserAccount.setSelectedApplicantData(jobApplicantList.applicationID)}" />
+                            </h:column>
+
+                            </h:dataTable>  
+                        </c:if> 
+                        <c:if test="#{login.theHrUserAccount.jobApplicantDetails.size() lt 1 }">
+                            <h3>
+                                There are no applicants for this job.
+                            </h3>
+                        </c:if>
+                    </div>  
+                    <div class="form-group">    
+                        <h:commandButton id="finalize" value="Finalize Applicants"
+                                     action="finalizeApplicant.xhtml"
+                                     styleClass="btn btn-primary"/>                                                       
+                        <div class="col-sm-2">
+                            <h:link outcome="homeHR.xhtml">Go Back</h:link>                                   
+                        </div>                       
+                    </div>                        
+                    </h:form>
+                </div>
+            </div>   
+            </div>
+    </div>                                                
+   
+    <div class='container'>
+        <div class='navbar navbar-inverse navbar-fixed-bottom'>
+        <p class='navbar-text'><b>© 2015 This Project is Developed by JAVA TEAM 3 - All Rights Reserved</b></p>
+    </div>
+    </div>                   
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.js"></script>  
+            
+    </h:body>
+</html>
+
